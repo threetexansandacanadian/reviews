@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 /* eslint-disable no-console */
 const { Client } = require('pg');
 
@@ -11,24 +12,20 @@ const client = new Client({
 
 client.connect();
 
-client.query('SELECT NOW()', (err, res) => {
-  console.log(err, res);
-  client.end();
-});
 
 const selectAllReviews = function () {
-  const query = new Promise((resolve, reject) => {
-    function client.query('SELECT * FROM reviews', (err, res) => {
+  console.log('DB INFO: ', process.env.USER, process.env.HOST, process.env.DATABASE);
+  return new Promise((resolve, reject) => {
+    client.query('select * from avatars', (err, res) => {
       console.log(err, res);
       if (err) {
         reject(err);
       } else {
+        console.log('Query Finished! Results -> ', res);
         resolve(res);
       }
-      client.end();
     });
   });
-  return query;
 };
 
 module.exports = { selectAllReviews };

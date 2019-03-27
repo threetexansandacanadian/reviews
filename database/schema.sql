@@ -1,8 +1,6 @@
-CREATE TABLE IF NOT EXISTS reviews(
+CREATE TABLE IF NOT EXISTS avatars(
   id SERIAL PRIMARY KEY,
-  review VARCHAR(255) NOT NULL,
-  stars DECIMAL(1,1),
-  user_id INT REFERENCES users(id)
+  url VARCHAR(100)
 );
 
 CREATE TABLE IF NOT EXISTS users(
@@ -10,7 +8,11 @@ CREATE TABLE IF NOT EXISTS users(
   avatar_id int REFERENCES avatars(id)
 );
 
-CREATE TABLE IF NOT EXISTS avatars(
+CREATE TABLE IF NOT EXISTS reviews(
   id SERIAL PRIMARY KEY,
-  url VARCHAR(100)
+  review VARCHAR(255) NOT NULL,
+  stars DECIMAL(1,1),
+  user_id INT REFERENCES users(id)
 );
+
+

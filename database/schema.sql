@@ -1,0 +1,16 @@
+CREATE TABLE IF NOT EXISTS reviews(
+  id SERIAL PRIMARY KEY,
+  review VARCHAR(255) NOT NULL,
+  stars DECIMAL(1,1),
+  user_id INT REFERENCES users(id)
+);
+
+CREATE TABLE IF NOT EXISTS users(
+  id SERIAL PRIMARY KEY,
+  avatar_id int REFERENCES avatars(id)
+);
+
+CREATE TABLE IF NOT EXISTS avatars(
+  id SERIAL PRIMARY KEY,
+  url VARCHAR(100)
+);

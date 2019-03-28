@@ -1,6 +1,7 @@
 /* eslint-disable func-names */
 /* eslint-disable no-console */
 const { Client } = require('pg');
+const { idQuery, userQuery } = require('./queries.js');
 
 const client = new Client({
   user: process.env.USER,
@@ -14,18 +15,41 @@ client.connect();
 
 
 const selectAllReviews = function () {
-  console.log('DB INFO: ', process.env.USER, process.env.HOST, process.env.DATABASE);
   return new Promise((resolve, reject) => {
-    client.query('select * from avatars', (err, res) => {
-      console.log(err, res);
+    client.query('select * from reviews', (err, res) => {
       if (err) {
         reject(err);
       } else {
-        console.log('Query Finished! Results -> ', res);
+        resolve(res);
+      }
+    });
+  });
+};
+const selectReviewsByID = function (id) {
+  return new Promise((resolve, reject) => {
+    client.query(`${idQuery(id)}`, (err, res) => {
+      if (err) {
+        reject(err);
+      } else {
         resolve(res);
       }
     });
   });
 };
 
-module.exports = { selectAllReviews };
+const selectUserByName = function (name) {
+  return new Promise((resolve, reject) => {
+    client.query(userQuery(name), (err, res) => {
+      if (err && err.code !== '42703') {
+        reject(err);
+      } else if (err && err.code !== '42703') {
+        // this will execute if no user is found
+        resolve(-1);
+      } else {
+        resolve(res);
+      }
+    });
+  });
+};
+
+module.exports = { selectAllReviews, selectReviewsByID, selectUserByName };

@@ -3,7 +3,7 @@ const app = express();
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
-const { selectReviewsByID, selectUserByName } = require('./database');
+const { selectReviewsByID, selectReviewsByName, selectUserByName } = require('./database');
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -12,19 +12,21 @@ dotenv.config();
 const port = process.env.PORT;
 
 app.get('/api/reviews', (req, res) => {
-  let {productID, productName } = req.headers;
+  let {productid : productID, productname: productName } = req.headers;
   if (!productID && !productName){
-    res.statusCode(400);
+    console.log(productID, productName, req.headers);
+    res.status(400);
     res.send();
   }
   let reviewPromise = (productID) ? selectReviewsByID(productID) : selectReviewsByName(productName);
-  
+
   reviewPromise.then((data) => {
     console.log('sending: ', data);
+    res.status(200);
     res.send(data);
   })
   .catch(err => {
-    console.err(err);
+    console.error("Error in GET /api/reviews", err);
     res.send();
   });
 })

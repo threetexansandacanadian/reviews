@@ -39,7 +39,7 @@ const selectReviewsByID = function (id) {
 
 const selectReviewsByName = function (name) {
   return new Promise((resolve, reject) => {
-    client.query(`${idProductQuery(name)}`, (err, res) => {
+    client.query(`${nameProductQuery(name)}`, (err, res) => {
       if (err) {
         reject(err);
       } else {

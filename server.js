@@ -22,7 +22,8 @@ app.get('/api/reviews', (req, res) => {
     res.send(data);
   })
   .catch(err => {
-    res.send(err);
+    console.err(err);
+    res.send();
   });
 })
 

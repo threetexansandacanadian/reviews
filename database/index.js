@@ -1,7 +1,7 @@
 /* eslint-disable func-names */
 /* eslint-disable no-console */
 const { Client } = require('pg');
-const { idQuery, userQuery } = require('./queries.js');
+const { idProductQuery, nameProductQuery, userQuery } = require('./queries.js');
 
 const client = new Client({
   user: process.env.USER,
@@ -27,7 +27,7 @@ const selectAllReviews = function () {
 };
 const selectReviewsByID = function (id) {
   return new Promise((resolve, reject) => {
-    client.query(`${idQuery(id)}`, (err, res) => {
+    client.query(`${idProductQuery(id)}`, (err, res) => {
       if (err) {
         reject(err);
       } else {
@@ -37,6 +37,17 @@ const selectReviewsByID = function (id) {
   });
 };
 
+const selectReviewsByName = function (name) {
+  return new Promise((resolve, reject) => {
+    client.query(`${idProductQuery(name)}`, (err, res) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(res);
+      }
+    });
+  });
+};
 const selectUserByName = function (name) {
   return new Promise((resolve, reject) => {
     client.query(userQuery(name), (err, res) => {
@@ -52,4 +63,4 @@ const selectUserByName = function (name) {
   });
 };
 
-module.exports = { selectAllReviews, selectReviewsByID, selectUserByName };
+module.exports = { selectAllReviews, selectReviewsByID, selectReviewsByName, selectUserByName };

@@ -12,12 +12,14 @@ dotenv.config();
 const port = process.env.PORT;
 
 app.get('/api/reviews', (req, res) => {
-  let userID = req.headers.id;
-  if (!userID){
+  let {productID, productName } = req.headers;
+  if (!productID && !productName){
     res.statusCode(400);
     res.send();
   }
-  selectReviewsByID(userID).then((data) => {
+  let reviewPromise = (productID) ? selectReviewsByID(productID) : selectReviewsByName(productName);
+  
+  reviewPromise.then((data) => {
     console.log('sending: ', data);
     res.send(data);
   })

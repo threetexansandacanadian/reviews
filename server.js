@@ -3,7 +3,7 @@ const app = express();
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
-const { selectAllReviews, selectReviewsByID, selectUserByName } = require('./database');
+const { selectReviewsByID, selectUserByName } = require('./database');
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -42,6 +42,5 @@ app.post('/api/reviews', (req, res) => {
     res.end();
   })
 })
-app.get('/', (req, res) => res.send('Hello World!'));
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

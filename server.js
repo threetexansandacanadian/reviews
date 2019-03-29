@@ -13,6 +13,7 @@ const {
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
+app.use(express.static('dist'));
 dotenv.config();
 
 const port = process.env.PORT;

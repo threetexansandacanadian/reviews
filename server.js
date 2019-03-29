@@ -41,13 +41,12 @@ app.post('/api/reviews', (req, res) => {
     res.status(400);
     res.send();
   }
-  let { review, stars, product_id } = req.body.review;
+  let reviewObj = { review, stars, product_id } = req.body.review;
   selectUserByName(req.body.user.name)
   .then(userArr => {
     if(!userArr.length){
       let AvatarId = Math.floor(Math.random() * 19);
       let userObj = { avatar_id: AvatarId, name: req.body.user.name};
-      let reviewObj = { review, stars, product_id } = req.body.review;
       createUserAndReview(reviewObj, userObj)
         .then((data) => {
           console.log('Created user: ', data);
@@ -60,7 +59,17 @@ app.post('/api/reviews', (req, res) => {
         })
     } else {
       console.log('User info', userArr);
-      //TODO call a createReview func
+      reviewObj.user_id = userArr[0].id;
+      createReview(reviewObj)
+      .then((data) => {
+        console.log('Created review: ', data);
+        res.status(201);
+        res.send();
+      })
+      .catch((err) => {
+        console.error(err);
+        res.send();
+      })
     }
     res.send();
   })

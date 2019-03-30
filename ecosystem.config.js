@@ -6,8 +6,8 @@ module.exports = {
   deploy: {
     production: {
       user: 'ubuntu',
-      host: ''ec2-54-224-251-247.compute-1.amazonaws.com,
-      key: '~/.ssh/FEC.pem',
+      host: 'ec2-54-224-251-247.compute-1.amazonaws.com',
+      key: '~/.ssh/fec.pem',
       ref: 'origin/master',
       repo: 'https://github.com/threetexansandacanadian/reviews.git',
       path: '/home/ubuntu/reviews',

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { getReviewsByID } from './dataHelpers';
+import ReviewList from './components/reviewList.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -8,7 +9,7 @@ class App extends Component {
 
     this.state = {
       currentProdID: 1,
-      storage: {}
+      reviews: []      
     };
   }
   
@@ -16,7 +17,7 @@ class App extends Component {
     const { currentProdID } = this.state;
     getReviewsByID(currentProdID)
       .then((data) => {
-        console.log('Reviews data: ', data);
+        this.setState({ reviews: data.rows }, () => console.log('State intialized: ', this.state.reviews ));
       })
       .catch((err) => {
         console.error('Error getting initial data', err);
@@ -25,7 +26,9 @@ class App extends Component {
 
   render() {
     return (
-      <div>Hello World!</div>
+      <div>
+      <ReviewList reviews={ this.state.reviews } />
+      </div>
     );
   }
 }

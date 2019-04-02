@@ -8,7 +8,7 @@ dotenv.config();
 
 console.log(process.env.HOST, process.env.DATABASE_PORT, process.env.USER, process.env.DATABASE);
 const client = new Client({
-  user: 'root',
+  user: process.env.USERNAME,
   host: process.env.HOST,
   database: process.env.DATABASE,
   password: process.env.PASSWORD,

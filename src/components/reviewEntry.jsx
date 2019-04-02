@@ -1,15 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Entry, ProfilePic, Username } from './reviewStyles';
 
 export default function ReviewEntry(props) {
   const { name, stars, url, review } = props.entry; 
   return (
-    <div>
-     <img src={url}></img>
-     <h3>{name}</h3>
-     <p><i>{stars}</i></p>
-     <p>{review}</p> 
-    </div>
+    <Entry>
+      <div>
+        <ProfilePic src={url} />
+        <Username>{name}</Username>
+      </div>
+      <p><i>{stars} stars</i></p>
+      <p>{review}</p>
+    </Entry>
   );
 }
 

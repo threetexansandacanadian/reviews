@@ -13,6 +13,7 @@ class App extends Component {
       reviews: [],
     };
 
+    this.fetchData = this.fetchData.bind(this);
     this.handleReviewSubmit = this.handleReviewSubmit.bind(this);
   }
 
@@ -25,7 +26,7 @@ class App extends Component {
   fetchData(id) {
     getReviewsByID(id)
       .then((data) => {
-        this.setState({ reviews: data.rows });
+        this.setState({ reviews: data.rows }, () => { console.log('refreshing data to: ', data.rows) });
       });
   }
 

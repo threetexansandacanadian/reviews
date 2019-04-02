@@ -5,7 +5,8 @@ import { List } from './reviewStyles';
 
 export default function ReviewList(props) {
   const renderList = () => {
-    return props.reviews.map((review, i) => {
+    const sortedReviews = props.reviews.slice().reverse();
+    return sortedReviews.map((review, i) => {
       return <ReviewEntry entry={ review } key={ i } />
     });
   };
@@ -17,6 +18,6 @@ export default function ReviewList(props) {
   );
 }
 
-ReviewList.PropTypes = {
-  reviews: PropTypes.array,
+ReviewList.propTypes = {
+  reviews: PropTypes.arrayOf(PropTypes.object).isRequired,
 };

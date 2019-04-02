@@ -22,5 +22,17 @@ export const getReviewsByName = function (name) {
       .catch((err) => {
         reject(err);
       });
-  });;
+  });
+};
+
+export const postReview = function (review) {
+  return new Promise((resolve, reject) => {
+    axios.post('http://localhost:3000/api/reviews', review)
+      .then((data) => {
+        resolve(data.data);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
 };

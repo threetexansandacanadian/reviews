@@ -16,4 +16,4 @@ export const ProfilePic = styled.img`
 
 export const Username = styled.span`
   font-famliy: sans-serif;
-`
+`;

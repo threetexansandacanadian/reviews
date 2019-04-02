@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { getReviewsByID } from './dataHelpers';
-import ReviewList from './components/reviewList.jsx';
+import ReviewList from './components/reviews/reviewList.jsx';
+import AddReview from './components/addReview/addReview.jsx';
 
 class App extends Component {
   constructor(props) {
@@ -11,8 +12,10 @@ class App extends Component {
       currentProdID: 1,
       reviews: []      
     };
+
+    this.handleReviewSubmit = this.handleReviewSubmit.bind(this);
   }
-  
+ 
   componentDidMount() {
     const { currentProdID } = this.state;
     getReviewsByID(currentProdID)
@@ -24,10 +27,15 @@ class App extends Component {
       });
   }
 
+  handleReviewSubmit(review) {
+    console.log('Submitting review: ', review);
+  }
+
   render() {
     return (
       <div>
-      <ReviewList reviews={ this.state.reviews } />
+        <AddReview handleSubmit={this.handleReviewSubmit} />
+        <ReviewList reviews={ this.state.reviews } />
       </div>
     );
   }

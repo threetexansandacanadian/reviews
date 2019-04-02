@@ -19,6 +19,7 @@ export default class AddReview extends Component {
     const { handleSubmit: addReview } = this.props;
 
     addReview({ user: { name }, review: { review, stars } });
+    this.setState({ name: '', review: '', stars: 5 });
   }
 
   handleNameChange(e) {

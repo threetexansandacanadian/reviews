@@ -11,7 +11,9 @@ const selectUserByName = name => `SELECT * FROM users WHERE users.name='${name}'
 const insertReview = rev => `INSERT INTO reviews 
                                   (review, stars, product_id, user_id)
                                   VALUES ('${rev.review}', ${rev.stars}, ${rev.product_id}, ${rev.user_id});`;
-const insertUser = user => `INSERT INTO users (avatar_id, name) VALUES (${user.avatar_id}, '${user.name}')`;
+const insertUser = user => `INSERT INTO users (avatar_id, name) 
+                            VALUES (${user.avatar_id}, '${user.name}')
+                            ON CONFLICT DO NOTHING;`;
 module.exports = {
   selectReviewsById,
   selectUserByName,

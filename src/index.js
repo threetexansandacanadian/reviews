@@ -26,7 +26,7 @@ class App extends Component {
   fetchData(id) {
     getReviewsByID(id)
       .then((data) => {
-        this.setState({ reviews: data.rows }, () => { console.log('refreshing data to: ', data.rows) });
+        this.setState({ reviews: data.rows });
       });
   }
 

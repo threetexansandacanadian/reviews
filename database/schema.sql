@@ -11,13 +11,14 @@ CREATE TABLE IF NOT EXISTS products(
 CREATE TABLE IF NOT EXISTS users(
   id SERIAL PRIMARY KEY,
   avatar_id int REFERENCES avatars(id),
-  name VARCHAR(20)
+  name VARCHAR(30)
 );
 
 CREATE TABLE IF NOT EXISTS reviews(
   id SERIAL PRIMARY KEY,
   review TEXT NOT NULL,
   stars INT NOT NULL, 
+  created_at TIMESTAMP DEFAULT NOW(),
   product_id INT REFERENCES products(id),
   user_id INT REFERENCES users(id)
 );

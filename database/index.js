@@ -90,7 +90,10 @@ const createReview = function (reviewObj) {
 const createUserAndReview = function (reviewObj, userObj) {
   return new Promise((resolve, reject) => {
     client.query(queries.insertUser(userObj), (errUser) => {
-      if (errUser) reject(errUser);
+      if (errUser) {
+        reject(errUser);
+        return;
+      }
 
       client.query(queries.selectUserByName(userObj.name), (errId, resId) => {
         if (errId) reject(errId);

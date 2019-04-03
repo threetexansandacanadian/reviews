@@ -2,16 +2,26 @@
 /* eslint-disable no-console */
 const { Client } = require('pg');
 const queries = require('./queries.js');
+const dotenv = require('dotenv');
 
+dotenv.config();
+
+console.log(process.env.HOST, process.env.DATABASE_PORT, process.env.USER, process.env.DATABASE);
 const client = new Client({
-  user: process.env.USER,
+  user: process.env.USERNAME,
   host: process.env.HOST,
   database: process.env.DATABASE,
   password: process.env.PASSWORD,
-  port: process.env.PORT,
+  port: process.env.DATABASE_PORT,
 });
 
-client.connect();
+client.connect()
+  .then((suc) => {
+    console.log('Success on connecting to the database');
+  })
+  .catch((err) => {
+    console.log('Error connection to database. ', err);
+  });
 
 const selectAllReviews = function () {
   return new Promise((resolve, reject) => {
@@ -27,7 +37,7 @@ const selectAllReviews = function () {
 
 const selectReviewsByID = function (id) {
   return new Promise((resolve, reject) => {
-    client.query(queries.selectProductById(id), (err, res) => {
+    client.query(queries.selectReviewsById(id), (err, res) => {
       if (err) {
         reject(err);
       } else {

@@ -3,6 +3,8 @@ const app = express();
 const morgan = require('morgan');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
+const cors = require('cors');
+
 const {
   selectReviewsByID,
   selectReviewsByName,
@@ -14,6 +16,8 @@ const {
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(express.static('dist'));
+app.use(cors());
+
 dotenv.config();
 
 const port = process.env.PORT;

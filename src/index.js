@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { getReviewsByID, postReview } from './dataHelpers';
 import ReviewList from './components/reviews/reviewList.jsx';
 import AddReview from './components/addReview/addReview.jsx';
+import Main from './styles';
 
 class App extends Component {
   constructor(props) {
@@ -46,10 +47,10 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <Main>
         <AddReview handleSubmit={this.handleReviewSubmit} />
         <ReviewList reviews={this.state.reviews} />
-      </div>
+      </Main>
     );
   }
 }

@@ -1,9 +1,14 @@
 /* eslint-disable func-names */
 import axios from 'axios';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+let host = process.env.SERVER_PATH || 'http://localhost:3000';
 
 export const getReviewsByID = function (id) {
   return new Promise((resolve, reject) => {
-    axios.get('http://localhost:3000/api/reviews', { headers: { productid: id, 'Access-Control-Allow-Origin': 'http://localhost:3000' } })
+    axios.get( `${host}/api/reviews`, { headers: { productid: id } })
       .then((data) => {
         resolve(data.data);
       })
@@ -15,7 +20,7 @@ export const getReviewsByID = function (id) {
 
 export const getReviewsByName = function (name) {
   return new Promise((resolve, reject) => {
-    axios.get('http://localhost:3000/api/reviews', { headers: { productname: name } })
+    axios.get(`${host}/api/reviews`, { headers: { productname: name } })
       .then((data) => {
         resolve(data.data);
       })
@@ -27,7 +32,7 @@ export const getReviewsByName = function (name) {
 
 export const postReview = function (review) {
   return new Promise((resolve, reject) => {
-    axios.post('http://localhost:3000/api/reviews', review)
+    axios.post(`${}`, review)
       .then((data) => {
         resolve(data.data);
       })

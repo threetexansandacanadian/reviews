@@ -34,7 +34,6 @@ export default class AddReview extends Component {
 
   handleStarChange(val) {
     this.setState({ stars: val });
-    console.log(val, this.state.stars);
   }
 
   render() {

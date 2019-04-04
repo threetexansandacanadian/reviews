@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { getReviewsByID, postReview } from './dataHelpers';
+import { getReviewsByID, postReview, getReviewsByName } from './dataHelpers';
 import ReviewList from './components/reviews/reviewList.jsx';
 import AddReview from './components/addReview/addReview.jsx';
 import Main from './styles';
@@ -13,22 +13,35 @@ class App extends Component {
       currentProdID: 1,
       reviews: [],
     };
-
     this.fetchData = this.fetchData.bind(this);
     this.handleReviewSubmit = this.handleReviewSubmit.bind(this);
   }
 
   componentDidMount() {
-    const { currentProdID } = this.state;
-
-    this.fetchData(currentProdID);
+    const { search } = window.location;
+    const params = new URLSearchParams(search);
+    const id = params.get('id') || null;
+    const product = params.get('product') || null;
+    this.fetchData(id, product);
   }
 
-  fetchData(id) {
-    getReviewsByID(id)
-      .then((data) => {
-        this.setState({ reviews: data.rows });
-      });
+  fetchData(id, product) {
+    if (id) {
+      getReviewsByID(id)
+        .then((data) => {
+          this.setState({ reviews: data.rows });
+        });
+    } else if (product) {
+      getReviewsByName(product)
+        .then((data) => {
+          this.setState({ reviews: data.rows });
+        });
+    } else {
+      getReviewsByID(1)
+        .then((data) => {
+          this.setState({ reviews: data.rows });
+        });
+    }
   }
 
   handleReviewSubmit(review) {

@@ -1,23 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactStars from 'react-stars';
+import { VictoryBar } from 'victory';
 
 export default function BarChart(props) {
   const countRatings = () => {
-    const count = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+    const counter = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
     props.reviews.forEach((review) => {
-      count[review.stars] += 1;
+      counter[review.stars] += 1;
     });
-    const results = Object.keys(count).map((number) => {
-      return { x: number, y: count[number] };
-    });
-    console.log(results);
-    //return results;
+    const results = Object.keys(counter).map(rating => ({ x: rating, y: counter[rating] }));
+    return results;
   };
+
   return (
     <div>
-      {countRatings()}
-      <p>I'm a barchart!</p>
+      <VictoryBar data={countRatings()} />
     </div>
   );
 }

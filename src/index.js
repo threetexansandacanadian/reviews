@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { getReviewsByID, postReview, getReviewsByName } from './dataHelpers';
 import ReviewList from './components/reviews/reviewList.jsx';
 import AddReview from './components/addReview/addReview.jsx';
+import BarChart from './components/barchart/barchart.jsx';
 import Main from './styles';
 
 class App extends Component {
@@ -59,10 +60,12 @@ class App extends Component {
   }
 
   render() {
+    const { reviews } = this.state;
     return (
       <Main>
         <AddReview handleSubmit={this.handleReviewSubmit} />
-        <ReviewList reviews={this.state.reviews} />
+        <BarChart reviews={reviews} />
+        <ReviewList reviews={reviews} />
       </Main>
     );
   }

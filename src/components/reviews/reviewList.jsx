@@ -7,7 +7,7 @@ export default function ReviewList(props) {
   const renderList = () => {
     const sortedReviews = props.reviews.slice().reverse();
     return sortedReviews.map((review, i) => {
-      return <ReviewEntry entry={ review } key={ i } />
+      return <ReviewEntry entry={review} key={i} />;
     });
   };
 

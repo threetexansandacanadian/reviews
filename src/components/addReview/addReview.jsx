@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ReactStars from 'react-stars';
+import { ReviewForm } from './addReviewStyles';
 
 export default class AddReview extends Component {
   constructor(props) {
@@ -30,14 +32,14 @@ export default class AddReview extends Component {
     this.setState({ review: e.target.value });
   }
 
-  handleStarChange(e) {
-    this.setState({ stars: e.target.value });
+  handleStarChange(val) {
+    this.setState({ stars: val });
   }
 
   render() {
     const { name, review, stars } = this.state;
     return (
-      <form>
+      <ReviewForm>
         <input
           type="text"
           value={name}
@@ -51,24 +53,18 @@ export default class AddReview extends Component {
           onChange={e => this.handleReviewChange(e)}
         />
 
-        <select
+        <ReactStars
           value={stars}
-          onChange={e => this.handleStarChange(e)}
-        >
-          <option value={1}>1</option>
-          <option value={2}>2</option>
-          <option value={3}>3</option>
-          <option value={4}>4</option>
-          <option value={5} select="selected">5</option>
-        </select>
+          onChange={val => this.handleStarChange(val)}
+          half={false}
+        />
 
         <button type="submit" onClick={e => this.handleSubmit(e)}>Submit</button>
-      </form>
+      </ReviewForm>
     );
   }
 }
 
 AddReview.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-}
-;
+};

@@ -36,7 +36,9 @@
     "react-dom": "^16.8.6",
     "react-stars": "^2.2.5",
     "styled-components": "^4.2.0",
-    "victory": "^32.1.0"
+    "victory-axis": "^32.1.0",
+    "victory-bar": "^32.1.0",
+    "victory-chart": "^32.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.0",

@@ -5,6 +5,8 @@ import ReviewList from './components/reviews/reviewList.jsx';
 import AddReview from './components/addReview/addReview.jsx';
 import BarChart from './components/barchart/barchart.jsx';
 import Main from './styles';
+//import 'bootstrap/dist/css/bootstrap.css';
+//import 'bootstrap/dist/css/bootstrap-theme.css';
 
 class App extends Component {
   constructor(props) {
@@ -14,6 +16,9 @@ class App extends Component {
       currentProdID: 1,
       reviews: [],
     };
+
+    window.addEventListener('updateProdId', this.handleUpdateProdId.bind(this));
+
     this.fetchData = this.fetchData.bind(this);
     this.handleReviewSubmit = this.handleReviewSubmit.bind(this);
   }
@@ -45,6 +50,10 @@ class App extends Component {
     }
   }
 
+  handleUpdateProdId(id) {
+    this.fetchData(id, null);
+  }
+
   handleReviewSubmit(review) {
     const { currentProdID } = this.state;
     const newReview = { ...review };
@@ -70,5 +79,5 @@ class App extends Component {
     );
   }
 }
-
+window.reviews = App;
 ReactDOM.render(<App />, document.getElementById('root'));

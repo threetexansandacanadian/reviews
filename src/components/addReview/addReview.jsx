@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactStars from 'react-stars';
 import { ReviewForm } from './addReviewStyles';
+import Button from 'react-bootstrap/Button';
 
 export default class AddReview extends Component {
   constructor(props) {
@@ -39,28 +40,40 @@ export default class AddReview extends Component {
   render() {
     const { name, review, stars } = this.state;
     return (
-      <ReviewForm>
-        <input
-          type="text"
-          value={name}
-          onChange={e => this.handleNameChange(e)}
-          placeholder="Username"
-        />
+      <form>
+        <div className="form-group">
+          <label htmlFor="username">
+            Username
+            <input
+              type="text"
+              id="username"
+              value={name}
+              onChange={e => this.handleNameChange(e)}
+              placeholder="Username"
+            />
+          </label>
+        </div>
+        <div className="form-group">
+          <label htmlFor="review">Review</label>
+          <textarea
+            id="review"
+            rows={5}
+            value={review}
+            onChange={e => this.handleReviewChange(e)}
+          />
+        </div>
+        <div className="form-group">
+          <label for="rating">Overall Rating</label>
+          <ReactStars
+            value={stars}
+            id="rating"
+            onChange={val => this.handleStarChange(val)}
+            half={false}
+          />
+        </div>
 
-        <textarea
-          rows={5}
-          value={review}
-          onChange={e => this.handleReviewChange(e)}
-        />
-
-        <ReactStars
-          value={stars}
-          onChange={val => this.handleStarChange(val)}
-          half={false}
-        />
-
-        <button type="submit" onClick={e => this.handleSubmit(e)}>Submit</button>
-      </ReviewForm>
+        <Button type="submit" onClick={e => this.handleSubmit(e)}>Submit</Button>
+      </form>
     );
   }
 }

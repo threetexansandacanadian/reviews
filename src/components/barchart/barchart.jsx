@@ -21,7 +21,6 @@ export default function BarChart(props) {
     let sum = 0;
     
     Object.keys(ratings).forEach((rating) => {
-      console.log(rating, ratings[rating]);
       sum += parseInt(ratings[rating].x) * ratings[rating].y;
     });
     let averageRating = (sum / props.reviews.length).toFixed(1);

@@ -15,8 +15,8 @@ const {
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
-app.use(express.static('dist'));
 app.use(cors());
+app.use(express.static('dist'));
 
 dotenv.config();
 

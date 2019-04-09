@@ -14,7 +14,7 @@ class App extends Component {
 
     this.state = {
       currentProdID: 1,
-      reviews: [],
+      reviews: []
     };
 
     window.addEventListener('updateProdId', this.handleUpdateProdId.bind(this));
@@ -77,7 +77,9 @@ class App extends Component {
             <BarChart reviews={reviews} />
           </Col>
           <Col md={8}>
-            <AddReview handleSubmit={this.handleReviewSubmit} />
+            <AddReview
+              handleSubmit={this.handleReviewSubmit}
+            />
             <ReviewList reviews={reviews} />
           </Col>
         </Row>

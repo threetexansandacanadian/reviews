@@ -13,7 +13,6 @@ export default class AddReview extends Component {
       review: '',
       name: '',
       stars: 5,
-      validated: false,
       touched: { name: false, review: false }
     };
 
@@ -28,7 +27,6 @@ export default class AddReview extends Component {
     const { handleSubmit: addReview } = this.props;
 
     if (name === '' || review === '') {
-      console.log('invalid form');
       this.setState({ touched: { name: true, review: true } });
       return null;
     }

@@ -50,8 +50,8 @@ class App extends Component {
     }
   }
 
-  handleUpdateProdId(id) {
-    this.fetchData(id, null);
+  handleUpdateProdId(e) {
+    this.fetchData(e.detail, null);
   }
 
   handleReviewSubmit(review) {

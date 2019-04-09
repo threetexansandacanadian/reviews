@@ -14,7 +14,7 @@ class App extends Component {
 
     this.state = {
       currentProdID: 1,
-      reviews: [],
+      reviews: []
     };
 
     window.addEventListener('updateProdId', this.handleUpdateProdId.bind(this));
@@ -35,7 +35,7 @@ class App extends Component {
     if (id) {
       getReviewsByID(id)
         .then((data) => {
-          this.setState({ reviews: data.rows });
+          this.setState({ reviews: data.rows, currentProdID: id });
         });
     } else if (product) {
       getReviewsByName(product)
@@ -50,8 +50,8 @@ class App extends Component {
     }
   }
 
-  handleUpdateProdId(id) {
-    this.fetchData(id, null);
+  handleUpdateProdId(e) {
+    this.fetchData(e.detail, null);
   }
 
   handleReviewSubmit(review) {
@@ -77,7 +77,9 @@ class App extends Component {
             <BarChart reviews={reviews} />
           </Col>
           <Col md={8}>
-            <AddReview handleSubmit={this.handleReviewSubmit} />
+            <AddReview
+              handleSubmit={this.handleReviewSubmit}
+            />
             <ReviewList reviews={reviews} />
           </Col>
         </Row>

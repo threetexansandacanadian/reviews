@@ -35,12 +35,11 @@ class App extends Component {
     if (id) {
       getReviewsByID(id)
         .then((data) => {
-          this.setState({ reviews: data.rows, currentProdID: id }, () => { console.log(this.state) });
+          this.setState({ reviews: data.rows, currentProdID: id });
         });
     } else if (product) {
       getReviewsByName(product)
         .then((data) => {
-          console.log(data);
           this.setState({ reviews: data.rows });
         });
     } else {

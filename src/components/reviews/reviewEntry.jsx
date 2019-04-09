@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import dateFns from 'date-fns';
 import ReactStars from 'react-stars';
-import { Entry, ProfilePic, Username } from './reviewStyles';
 import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 
@@ -13,9 +12,9 @@ export default function ReviewEntry(props) {
     <Card style={{ margin: '5px 0px 5px 0px', padding: '10px' }}>
       <Card.Title>
         <Image src={url} rounded style={{ height: '30px', borderRadius: '30px' }} />
-        <Username>
+        <div>
           {name}
-        </Username>
+        </div>
       </Card.Title>
       <Card.Subtitle>
         <i>

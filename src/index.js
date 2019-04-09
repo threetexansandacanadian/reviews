@@ -5,8 +5,6 @@ import ReviewList from './components/reviews/reviewList.jsx';
 import AddReview from './components/addReview/addReview.jsx';
 import BarChart from './components/barchart/barchart.jsx';
 import Main from './styles';
-//import 'bootstrap/dist/css/bootstrap.css';
-//import 'bootstrap/dist/css/bootstrap-theme.css';
 
 class App extends Component {
   constructor(props) {

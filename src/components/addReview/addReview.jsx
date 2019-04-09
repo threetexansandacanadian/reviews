@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ReactStars from 'react-stars';
-import { ReviewForm } from './addReviewStyles';
 import Button from 'react-bootstrap/Button';
 
 export default class AddReview extends Component {

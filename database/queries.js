@@ -1,7 +1,8 @@
 const selectReviewsById = id => `SELECT * FROM reviews 
                        INNER JOIN users ON reviews.user_id=users.id
                        INNER JOIN avatars ON users.avatar_id = avatars.id 
-                       WHERE reviews.product_id=${id};`;
+                       WHERE reviews.product_id=${id}
+                       ORDER BY reviews.id ASC;`;
 const selectReviewsByProdName = name => `SELECT * FROM products
                                   INNER JOIN reviews ON products.id=reviews.product_id
                                   INNER JOIN users ON users.id=reviews.user_id

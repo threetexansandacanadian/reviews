@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import { getReviewsByID, postReview, getReviewsByName } from './dataHelpers';
 import ReviewList from './components/reviews/reviewList.jsx';
 import AddReview from './components/addReview/addReview.jsx';
 import BarChart from './components/barchart/barchart.jsx';
-import Main from './styles';
 
 class App extends Component {
   constructor(props) {
@@ -69,11 +71,17 @@ class App extends Component {
   render() {
     const { reviews } = this.state;
     return (
-      <Main>
-        <AddReview handleSubmit={this.handleReviewSubmit} />
-        <BarChart reviews={reviews} />
-        <ReviewList reviews={reviews} />
-      </Main>
+      <Container>
+        <Row>
+          <Col md={4}>
+            <BarChart reviews={reviews} />
+          </Col>
+          <Col md={8}>
+            <AddReview handleSubmit={this.handleReviewSubmit} />
+            <ReviewList reviews={reviews} />
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

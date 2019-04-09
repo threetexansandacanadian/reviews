@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ReviewEntry from './reviewEntry.jsx';
-import { List } from './reviewStyles';
 
 export default function ReviewList(props) {
   const renderList = () => {
@@ -12,9 +11,9 @@ export default function ReviewList(props) {
   };
 
   return (
-    <List>
+    <div>
       {renderList()}
-    </List>
+    </div>
   );
 }
 

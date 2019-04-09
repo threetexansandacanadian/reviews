@@ -4,7 +4,6 @@ import ReactStars from 'react-stars';
 import { VictoryBar } from 'victory-bar';
 import { VictoryChart } from 'victory-chart';
 import { VictoryAxis } from 'victory-axis';
-import { Main, Chart } from './barchartStyles';
 import Card from 'react-bootstrap/Card';
 
 export default function BarChart(props) {
@@ -30,7 +29,7 @@ export default function BarChart(props) {
   };
 
   return (props.reviews.length) ? (
-    <Card className="text-center" style={{ width: '100vw', margin: '10px' }}>
+    <Card className="text-center" style={{ margin: '10px' }}>
       <Card.Body>
       <Card.Title>{props.reviews.length} reviews</Card.Title>
         <Card.Text>

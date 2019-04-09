@@ -9,12 +9,10 @@ export default function ReviewEntry(props) {
   const { name, stars, url, review, created_at } = props.entry; 
   const date = (created_at) ? `Submitted on ${dateFns.format(created_at, 'MM/DD/YYYY')}` : null;
   return (
-    <Card style={{ margin: '5px 0px 5px 0px', padding: '10px' }}>
-      <Card.Title>
-        <Image src={url} rounded style={{ height: '30px', borderRadius: '30px' }} />
-        <div>
-          {name}
-        </div>
+    <Card style={{ margin: '10px', padding: '10px' }}>
+      <Card.Title style={{ display: 'flex', alignItems: 'center' }}>
+        <Image src={url} roundedCircle style={{ height: '30px', marginRight: '5px' }} />
+        <span>{name}</span>
       </Card.Title>
       <Card.Subtitle>
         <i>

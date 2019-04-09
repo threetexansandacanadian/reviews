@@ -17,7 +17,7 @@ export const getReviewsByID = function (id) {
 
 export const getReviewsByName = function (name) {
   return new Promise((resolve, reject) => {
-    axios.get(`${host}:3000/api/reviews`, { headers: { productname: name, 'Access-Control-Allow-Origin': host } })
+    axios.get(`${host}:3000/api/reviews`, { headers: { productname: name, 'Access-Control-Allow-Origin': `${host}:3000/api/reviews` } })
       .then((data) => {
         resolve(data.data);
       })

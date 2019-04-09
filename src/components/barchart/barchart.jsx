@@ -4,7 +4,7 @@ import ReactStars from 'react-stars';
 import { VictoryBar } from 'victory-bar';
 import { VictoryChart } from 'victory-chart';
 import { VictoryAxis } from 'victory-axis';
-import { Main, Chart } from './barchartStyles';
+import Card from 'react-bootstrap/Card';
 
 export default function BarChart(props) {
   const countRatings = () => {
@@ -21,7 +21,6 @@ export default function BarChart(props) {
     let sum = 0;
     
     Object.keys(ratings).forEach((rating) => {
-      console.log(rating, ratings[rating]);
       sum += parseInt(ratings[rating].x) * ratings[rating].y;
     });
     let averageRating = (sum / props.reviews.length).toFixed(1);
@@ -29,31 +28,41 @@ export default function BarChart(props) {
     return averageRating;
   };
 
-  return (
-    <Main>
-      <h3>{props.reviews.length} reviews</h3>
-      <ReactStars
-        value={calcAverageRatings()}
-        edit={false}
-      />
-      <p>{calcAverageRatings()} out of 5 stars</p>
-      <div style={{backgroundColor: "#fee", height: '20vh', width: '50vw' }}>
-        <VictoryChart
-          height={300}
-        >
-          <VictoryAxis
-            tickValues={[5, 4, 3, 2, 1]}
-            tickFormat={x => `${x} stars`}
-          />
-          <VictoryBar
-            data={countRatings()}
-            labels={data => (`${Math.floor((data.y / props.reviews.length) * 100)}%`)}
-            horizontal
-          />
-        </VictoryChart>
-      </div>
-    </Main>
-  );
+  return (props.reviews.length) ? (
+    <Card className="text-center" style={{ margin: '10px' }}>
+      <Card.Body>
+      <Card.Title>{props.reviews.length} reviews</Card.Title>
+        <Card.Text>
+          <div style={{ display: 'flex', height: '50px', justifyContent: 'center' }}>
+            <ReactStars
+              value={calcAverageRatings()}
+              starDimension="50px"
+              edit={false}
+            />
+          </div>
+          <p>{calcAverageRatings()} out of 5 stars</p>
+          <VictoryChart height={300}>
+            <VictoryAxis
+              tickValues={[5, 4, 3, 2, 1]}
+              tickFormat={x => `${x} stars`}
+              style={{
+                axis: { stroke: 'none' },
+              }}
+            />
+            <VictoryBar
+              data={countRatings()}
+              barRatio={1.2}
+              style={{
+                data: { fill: '#ffd700'}
+              }}
+              labels={data => (`${Math.floor((data.y / props.reviews.length) * 100)}%`)}
+              horizontal
+            />
+          </VictoryChart>
+        </Card.Text>
+      </Card.Body>
+    </Card>
+  ) : (<div />);
 }
 
 BarChart.propTypes = {

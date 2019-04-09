@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 import { getReviewsByID, postReview, getReviewsByName } from './dataHelpers';
 import ReviewList from './components/reviews/reviewList.jsx';
 import AddReview from './components/addReview/addReview.jsx';
 import BarChart from './components/barchart/barchart.jsx';
-import Main from './styles';
 
 class App extends Component {
   constructor(props) {
@@ -14,6 +16,9 @@ class App extends Component {
       currentProdID: 1,
       reviews: [],
     };
+
+    window.addEventListener('updateProdId', this.handleUpdateProdId.bind(this));
+
     this.fetchData = this.fetchData.bind(this);
     this.handleReviewSubmit = this.handleReviewSubmit.bind(this);
   }
@@ -45,6 +50,10 @@ class App extends Component {
     }
   }
 
+  handleUpdateProdId(id) {
+    this.fetchData(id, null);
+  }
+
   handleReviewSubmit(review) {
     const { currentProdID } = this.state;
     const newReview = { ...review };
@@ -62,13 +71,19 @@ class App extends Component {
   render() {
     const { reviews } = this.state;
     return (
-      <Main>
-        <AddReview handleSubmit={this.handleReviewSubmit} />
-        <BarChart reviews={reviews} />
-        <ReviewList reviews={reviews} />
-      </Main>
+      <Container>
+        <Row>
+          <Col md={4}>
+            <BarChart reviews={reviews} />
+          </Col>
+          <Col md={8}>
+            <AddReview handleSubmit={this.handleReviewSubmit} />
+            <ReviewList reviews={reviews} />
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
-
+window.reviews = App;
 ReactDOM.render(<App />, document.getElementById('root'));

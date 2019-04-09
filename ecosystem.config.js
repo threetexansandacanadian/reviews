@@ -1,7 +1,7 @@
 module.exports = {
   apps: [{
     name: 'reviews',
-    script: './server.js'
+    script: './server.js',
   }],
   deploy: {
     production: {
@@ -11,7 +11,7 @@ module.exports = {
       ref: 'origin/master',
       repo: 'https://github.com/threetexansandacanadian/reviews.git',
       path: '/home/ubuntu/reviews',
-      'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js'
-    }
-  }
-}
+      'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js',
+    },
+  },
+};

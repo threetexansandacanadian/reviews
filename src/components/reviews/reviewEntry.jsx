@@ -29,6 +29,6 @@ export default function ReviewEntry(props) {
   );
 }
 
-ReviewEntry.PropTypes = {
+ReviewEntry.propTypes = {
   entry: PropTypes.Object,
 };

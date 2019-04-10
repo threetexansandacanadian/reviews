@@ -81,10 +81,10 @@ export default class AddReview extends Component {
                 onChange={e => this.handleNameChange(e)}
                 onBlur={() => this.handleBlur("name")}
                 placeholder="Username"
-                isInvalid={(name === '' && touched.name === true)}
+                isInvalid={((name === '' && touched.name === true) || name.length > 30)}
               />
               <Form.Control.Feedback type="invalid">
-                Please choose a username.
+                Username cannot be blank or more than 30 characters.
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="review">

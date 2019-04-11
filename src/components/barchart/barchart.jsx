@@ -33,10 +33,10 @@ export default function BarChart(props) {
       <Card.Body>
       <Card.Title>{props.reviews.length} reviews</Card.Title>
         <Card.Text>
-          <div style={{ display: 'flex', height: '50px', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
             <ReactStars
               value={calcAverageRatings()}
-              starDimension="50px"
+              size={30}
               edit={false}
             />
           </div>

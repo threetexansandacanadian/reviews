@@ -14,13 +14,16 @@ class App extends Component {
 
     this.state = {
       currentProdID: 1,
-      reviews: []
+      reviews: [],
+      reviewsPerPage: 10,
+      page: 1,
     };
 
     window.addEventListener('updateProdId', this.handleUpdateProdId.bind(this));
 
     this.fetchData = this.fetchData.bind(this);
     this.handleReviewSubmit = this.handleReviewSubmit.bind(this);
+    this.handleNextOrPrev = this.handleNextOrPrev.bind(this);
   }
 
   componentDidMount() {
@@ -35,7 +38,7 @@ class App extends Component {
     if (id) {
       getReviewsByID(id)
         .then((data) => {
-          this.setState({ reviews: data.rows, currentProdID: id });
+          this.setState({ reviews: data.rows, currentProdID: id, page: 1 });
         });
     } else if (product) {
       getReviewsByName(product)
@@ -68,8 +71,20 @@ class App extends Component {
       });
   }
 
+  handleNextOrPrev(direction) {
+    const { page } = this.state;
+    if (direction === 'next') {
+      this.setState({ page: page + 1 });
+    }
+    else if (direction === 'prev') {
+      if (page === 1) { return null; }
+
+      this.setState({ page: page - 1 });
+    }
+  }
+
   render() {
-    const { reviews } = this.state;
+    const { reviews, reviewsPerPage, page } = this.state;
     return (
       <Container>
         <Row>
@@ -80,7 +95,11 @@ class App extends Component {
             <AddReview
               handleSubmit={this.handleReviewSubmit}
             />
-            <ReviewList reviews={reviews} />
+            <ReviewList reviews={reviews}
+                        reviewsPerPage={reviewsPerPage}
+                        page={page}
+                        handleNextOrPrev={this.handleNextOrPrev}
+                        />
           </Col>
         </Row>
       </Container>

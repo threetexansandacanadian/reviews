@@ -1,18 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button'
 
 
 export default function ReviewButtons(props) {
   const { handleNextOrPrev, handlePrev, isStart, isEnd } = props;
   const prevStyle = (isStart) ? { display: "none" } : { display: "inline" };
   const nextStyle = (isEnd) ? { display: "none" } : { display: "inline" };
-  console.log("Hello from inside reviewButtons", isStart, isEnd, "prev", prevStyle, "next", nextStyle );
 
   return (
-    <div style={{ margin: '10px', padding: '10px', backgroundColor: '#ead' }}>
-      <button type="submit" style={prevStyle} onClick={() => handleNextOrPrev('prev')}>Previous</button>
-      <button type="submit" style={nextStyle} onClick={() => handleNextOrPrev('next')}>Next</button>
-      <button type="submit">Hello!</button>
+    <div style={{ margin: '10px', padding: '10px', display: 'flex', justifyContent: 'center' }}>
+      <Button
+        type="submit"
+        style={{...prevStyle, margin: '5px'}}
+        variant={"outline-info"}
+        onClick={() => handleNextOrPrev('prev')}
+      >
+        Prev
+      </Button>
+      <Button
+        type="submit"
+        variant={"outline-info"}
+        style={{...nextStyle, margin: '5px'}}
+        onClick={() => handleNextOrPrev('next')}
+      >
+        Next
+      </Button>
     </div>
   );
 }

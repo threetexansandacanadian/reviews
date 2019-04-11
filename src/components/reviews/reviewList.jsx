@@ -12,7 +12,7 @@ export default function ReviewList(props) {
     const sortedReviews = props.reviews.slice().reverse();
     const { page, reviewsPerPage } = props;
     const reviewList = [];
-    const startPoint = (page === 1) ? page : page * reviewsPerPage;
+    const startPoint = (page === 1) ? 0 : page * reviewsPerPage;
     const endPoint = (sortedReviews.length < startPoint + reviewsPerPage) ? sortedReviews.length : startPoint + reviewsPerPage;
     for (let i = startPoint; i < endPoint; i += 1) {
       reviewList.push(<ReviewEntry entry={sortedReviews[i]} key={i} />);

@@ -14,7 +14,7 @@ export default function ReviewEntry(props) {
         <Image src={url} roundedCircle style={{ height: '30px', marginRight: '5px' }} />
         <span>{name}</span>
       </Card.Title>
-      <Card.Subtitle>
+      <Card.Subtitle style={{ fontSize: '12px' }}>
         <i>
           {date}
         </i>
@@ -22,6 +22,7 @@ export default function ReviewEntry(props) {
       <ReactStars
         value={stars}
         edit={false}
+        size={20}
       />
 
       <Card.Text style={{ padding: '10px' }}>{review}</Card.Text>

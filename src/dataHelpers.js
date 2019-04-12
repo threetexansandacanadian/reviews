@@ -1,8 +1,7 @@
 /* eslint-disable func-names */
 import axios from 'axios';
 
-//const host = 'http://ec2-54-224-251-247.compute-1.amazonaws.com';
-const host = 'http://localhost'
+const host = 'http://ec2-54-224-251-247.compute-1.amazonaws.com';
 export const getReviewsByID = function (id) {
   return new Promise((resolve, reject) => {
     axios.get(`${host}:3000/api/reviews`, { headers: { productid: id, 'Access-Control-Allow-Origin': `${host}:3000/api/reviews` } })

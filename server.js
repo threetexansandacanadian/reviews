@@ -46,7 +46,7 @@ app.post('/api/reviews', (req, res) => {
     res.status(400);
     res.send();
   }
-  let reviewObj = { review, stars, product_id } = req.body.review;
+  let reviewObj = { review, stars, title, product_id } = req.body.review;
   selectUserByName(req.body.user.name)
   .then(userArr => {
     if(!userArr.length){

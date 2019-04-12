@@ -22,3 +22,13 @@ CREATE TABLE IF NOT EXISTS reviews(
   product_id INT REFERENCES products(id),
   user_id INT REFERENCES users(id)
 );
+
+CREATE TABLE IF NOT EXISTS reviews_but_better(
+  id SERIAL PRIMARY KEY,
+  review TEXT NOT NULL,
+  stars INT NOT NULL, 
+  title TEXT NOT NULL,
+  created_at TIMESTAMP DEFAULT NOW(),
+  user_id INT REFERENCES users(id),
+  product_id INT REFERENCES products(id)
+);

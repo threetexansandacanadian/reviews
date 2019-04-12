@@ -12,6 +12,7 @@ export default class AddReview extends Component {
     this.state = {
       review: '',
       name: '',
+      title: '',
       stars: 5,
       touched: { name: false, review: false }
     };
@@ -23,18 +24,19 @@ export default class AddReview extends Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    const { name, review, stars } = this.state;
+    const { name, review, stars, title } = this.state;
     const { handleSubmit: addReview } = this.props;
 
-    if (name === '' || review === '') {
-      this.setState({ touched: { name: true, review: true } });
+    if (name === '' || review === '' || title === '') {
+      this.setState({ touched: { name: true, review: true, title: true } });
       return null;
     }
 
-    addReview({ user: { name }, review: { review, stars } });
+    addReview({ user: { name }, review: { review, stars, title } });
     this.setState({
       name: '',
       review: '',
+      title: '',
       stars: 5,
       touched: { name: false, review: false }
     });
@@ -57,8 +59,12 @@ export default class AddReview extends Component {
     this.setState({ stars: val });
   }
 
+  handleTitleChange(e) {
+    this.setState({ title: e.target.value });
+  }
+
   render() {
-    const { name, review, stars, touched } = this.state;
+    const { name, review, stars, touched, title } = this.state;
     return (
       <Card style={{ margin: '10px', padding: '10px' }}>
         <Card.Header style={{ backgroundColor: 'transparent' }}>
@@ -87,6 +93,25 @@ export default class AddReview extends Component {
                 Username cannot be blank or more than 30 characters.
               </Form.Control.Feedback>
             </Form.Group>
+            <Form.Group controlId="username">
+              <div>
+                <Form.Label>
+                  Title
+                </Form.Label>
+              </div>
+              <Form.Control
+                type="text"
+                id="title"
+                value={title}
+                onChange={e => this.handleTitleChange(e)}
+                onBlur={() => this.handleBlur("title")}
+                placeholder="Review Title"
+                isInvalid={((title === '' && touched.title === true) || title.length > 85)}
+              />
+              <Form.Control.Feedback type="invalid">
+                Title cannot be blank or more than 85 characters.
+              </Form.Control.Feedback>
+            </Form.Group>
             <Form.Group controlId="review">
               <Form.Label>Review</Form.Label>
               <Form.Control
@@ -112,6 +137,7 @@ export default class AddReview extends Component {
                 id="rating"
                 onChange={val => this.handleStarChange(val)}
                 half={false}
+                size={20}
               />
             </Form.Group>
 

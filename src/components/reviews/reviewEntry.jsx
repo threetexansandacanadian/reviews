@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card';
 import Image from 'react-bootstrap/Image';
 
 export default function ReviewEntry(props) {
-  const { name, stars, url, review, created_at } = props.entry; 
+  const { name, stars, title, url, review, created_at } = props.entry; 
   const date = (created_at) ? `Submitted on ${dateFns.format(created_at, 'MM/DD/YYYY')}` : null;
   return (
     <Card style={{ margin: '10px', padding: '10px' }}>
@@ -14,17 +14,19 @@ export default function ReviewEntry(props) {
         <Image src={url} roundedCircle style={{ height: '30px', marginRight: '5px' }} />
         <span>{name}</span>
       </Card.Title>
+      <span><h6>{title}</h6></span>
+
       <Card.Subtitle style={{ fontSize: '12px' }}>
         <i>
           {date}
         </i>
       </Card.Subtitle>
+
       <ReactStars
         value={stars}
         edit={false}
         size={20}
       />
-
       <Card.Text style={{ padding: '10px' }}>{review}</Card.Text>
     </Card>
   );

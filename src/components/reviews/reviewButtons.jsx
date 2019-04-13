@@ -13,14 +13,14 @@ export default function ReviewButtons(props) {
       <Button
         type="submit"
         style={{...prevStyle, margin: '5px'}}
-        variant={"outline-info"}
+        variant={"outline-dark"}
         onClick={() => handleNextOrPrev('prev')}
       >
         Prev
       </Button>
       <Button
         type="submit"
-        variant={"outline-info"}
+        variant={"outline-dark"}
         style={{...nextStyle, margin: '5px'}}
         onClick={() => handleNextOrPrev('next')}
       >

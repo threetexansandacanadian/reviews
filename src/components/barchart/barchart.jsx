@@ -31,11 +31,12 @@ export default function BarChart(props) {
   return (props.reviews.length) ? (
     <Card className="text-center" style={{ margin: '10px' }}>
       <Card.Body>
-      <Card.Title>{props.reviews.length} reviews</Card.Title>
+      <Card.Title><b style={{ color: '#ce6600' }}>{props.reviews.length} customer reviews</b></Card.Title>
         <Card.Text>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <ReactStars
               value={calcAverageRatings()}
+              color2={'#ffcc50'}
               size={30}
               edit={false}
             />
@@ -53,7 +54,7 @@ export default function BarChart(props) {
               data={countRatings()}
               barRatio={1.2}
               style={{
-                data: { fill: '#ffd700'}
+                data: { fill: '#ffcc50'}
               }}
               labels={data => (`${Math.floor((data.y / props.reviews.length) * 100)}%`)}
               horizontal

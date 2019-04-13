@@ -26,6 +26,7 @@ export default function ReviewEntry(props) {
         value={stars}
         edit={false}
         size={20}
+        color2={'#ffcc50'}
       />
       <Card.Text style={{ padding: '10px' }}>{review}</Card.Text>
     </Card>

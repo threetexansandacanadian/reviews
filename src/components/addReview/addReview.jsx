@@ -77,7 +77,7 @@ export default class AddReview extends Component {
             <Form.Group controlId="username">
               <div>
                 <Form.Label>
-                  Username
+                  Add a Username
                 </Form.Label>
               </div>
               <Form.Control
@@ -96,7 +96,7 @@ export default class AddReview extends Component {
             <Form.Group controlId="username">
               <div>
                 <Form.Label>
-                  Title
+                  Add a Title
                 </Form.Label>
               </div>
               <Form.Control
@@ -113,7 +113,7 @@ export default class AddReview extends Component {
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group controlId="review">
-              <Form.Label>Review</Form.Label>
+              <Form.Label>Add a Review</Form.Label>
               <Form.Control
                 as="textarea"
                 id="review"
@@ -136,6 +136,7 @@ export default class AddReview extends Component {
                 value={stars}
                 id="rating"
                 onChange={val => this.handleStarChange(val)}
+                color2={'#ffcc50'}
                 half={false}
                 size={20}
               />

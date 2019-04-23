@@ -1,0 +1,1 @@
+mongoimport -d sdc -c reviews --type CSV --file /Users/Maggie/Desktop/SDC/reviews/database/data3.csv --headerline

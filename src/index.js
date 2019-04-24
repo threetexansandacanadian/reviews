@@ -35,6 +35,8 @@ class App extends Component {
   }
 
   fetchData(id, product) {
+    console.log('id type:', typeof id);
+    console.log('id:', id)
     if (id) {
       getReviewsByID(id)
         .then((data) => {

@@ -18,18 +18,29 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static('dist'));
 
-dotenv.config();
+// dotenv.config();
 
-const port = process.env.PORT;
+const port = 3333;
 
 app.get('/api/reviews', (req, res) => {
-  let {productid : productID, productname: productName } = req.headers;
-  if (!productID && !productName){
+  console.log('req.headers:', typeof req.headers.id);
+  const { id } = req.headers;
+  const numberId = Number(id);
+  console.log('typeof numberID', typeof numberId);
+
+  if (!numberId) {
     res.status(400);
     res.send();
   }
-  let reviewPromise = (productID) ? selectReviewsByID(productID) : selectReviewsByName(productName);
 
+  const reviewPromise = selectReviewsByID(numberId);
+  // let {productid : productID, productname: productName } = req.headers;
+  // if (!productID && !productName) {
+  //   res.status(400);
+  //   res.send();
+  // }
+  // let reviewPromise = (productID) ? selectReviewsByID(productID) : selectReviewsByName(productName);
+  console.log('numberId:', numberId);
   reviewPromise.then((data) => {
 
     res.status(200);

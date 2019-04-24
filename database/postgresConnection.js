@@ -6,14 +6,14 @@ const client = new Client({
   user: 'Maggie',
   database: 'postgres',
   password: 'mypassword'
-})
+});
+
 client.connect((err, success) => {
   if (err) {
-    console.log('error connecting to db:', err)
+    console.log('error connecting to db:', err);
   } else {
     console.log('success connecting to db!');
   }
-})
+});
 
 module.exports = client;
-

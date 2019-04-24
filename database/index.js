@@ -6,13 +6,21 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-console.log(process.env.HOST, process.env.DATABASE_PORT, process.env.USER, process.env.DATABASE);
+// console.log(process.env.HOST, process.env.DATABASE_PORT, process.env.USER, process.env.DATABASE);
+// const client = new Client({
+//   user: process.env.USERNAME,
+//   host: process.env.HOST,
+//   database: process.env.DATABASE,
+//   password: process.env.PASSWORD,
+//   port: process.env.DATABASE_PORT,
+// });
+
 const client = new Client({
-  user: process.env.USERNAME,
-  host: process.env.HOST,
-  database: process.env.DATABASE,
-  password: process.env.PASSWORD,
-  port: process.env.DATABASE_PORT,
+  host: 'localhost',
+  port: 5432,
+  user: 'Maggie',
+  database: 'sdc',
+  password: 'mypassword',
 });
 
 client.connect()

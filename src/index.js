@@ -35,8 +35,7 @@ class App extends Component {
   }
 
   fetchData(id, product) {
-    console.log('id type:', typeof id);
-    console.log('id:', id)
+    console.log('CLIENT: type and id in fetchData:', id + typeof id);
     if (id) {
       getReviewsByID(id)
         .then((data) => {
@@ -48,7 +47,7 @@ class App extends Component {
           this.setState({ reviews: data.rows });
         });
     } else {
-      getReviewsByID(1)
+      getReviewsByID(3424050)
         .then((data) => {
           this.setState({ reviews: data.rows });
         });

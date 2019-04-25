@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
-const dotenv = require('dotenv');
+// const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -23,14 +23,13 @@ app.use(express.static('dist'));
 const port = 3333;
 
 app.get('/api/reviews', (req, res) => {
-  console.log('req.headers:', typeof req.headers.id);
+  // console.log('req.headers:', typeof req.headers.id);
   const { id } = req.headers;
   const numberId = Number(id);
-  console.log('typeof numberID', typeof numberId);
+  // console.log('typeof numberID', typeof numberId);
 
   if (!numberId) {
-    res.status(400);
-    res.send();
+    res.status(400).end();
   }
 
   const reviewPromise = selectReviewsByID(numberId);
@@ -40,15 +39,13 @@ app.get('/api/reviews', (req, res) => {
   //   res.send();
   // }
   // let reviewPromise = (productID) ? selectReviewsByID(productID) : selectReviewsByName(productName);
-  console.log('numberId:', numberId);
+  // console.log('numberId:', numberId);
   reviewPromise.then((data) => {
-
-    res.status(200);
-    res.send(data);
+    res.status(200).send(data);
   })
-  .catch(err => {
-    console.error("Error in GET /api/reviews", err);
-    res.send();
+  .catch((err) => {
+    console.error('Error in GET /api/reviews', err);
+    res.end();
   });
 })
 
@@ -58,6 +55,7 @@ app.post('/api/reviews', (req, res) => {
     res.send();
   }
   let reviewObj = { review, stars, title, product_id } = req.body.review;
+  
   selectUserByName(req.body.user.name)
   .then(userArr => {
     if(!userArr.length){

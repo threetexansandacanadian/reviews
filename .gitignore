@@ -2,6 +2,6 @@ node_modules
 .env
 .DS_Store
 
-/Users/Maggie/Desktop/SDC/reviews/database/data2.csv
+/Users/Maggie/Desktop/SDC/reviews/database/postgreSQL/data2.csv
 
-/Users/Maggie/Desktop/SDC/reviews/database/data3.csv
+/Users/Maggie/Desktop/SDC/reviews/database/mongo

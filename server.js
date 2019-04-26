@@ -1,8 +1,6 @@
 const express = require('express');
 const app = express();
-const morgan = require('morgan');
 const faker = require('faker');
-// const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
@@ -14,41 +12,43 @@ const {
   // createUserAndReview,
 } = require('./database');
 
-app.use(morgan('dev'));
+const port = 3333;
+
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static('dist'));
 
-// dotenv.config();
-
-const port = 3333;
-
 app.get('/api/reviews', (req, res) => {
-  // console.log('req.headers:', typeof req.headers.id);
   const { id } = req.headers;
   const numberId = Number(id);
-  // console.log('typeof numberID', typeof numberId);
 
-  if (!numberId) {
-    res.status(400).end();
-  }
-
-  const reviewPromise = selectReviewsByID(numberId);
-  // let {productid : productID, productname: productName } = req.headers;
-  // if (!productID && !productName) {
-  //   res.status(400);
-  //   res.send();
+  // if (!numberId) {
+  //   res.status(400).end();
   // }
-  // let reviewPromise = (productID) ? selectReviewsByID(productID) : selectReviewsByName(productName);
-  // console.log('numberId:', numberId);
-  reviewPromise.then((data) => {
-    res.status(200).send(data);
-  })
-  .catch((err) => {
-    console.error('Error in GET /api/reviews', err);
-    res.end();
+
+  selectReviewsByID(numberId,(err, data) => {
+    if (err) {
+      res.end();
+    } else {
+      res.send(data);
+    }
   });
-})
+  // const reviewPromise = selectReviewsByID(numberId);
+  // // let {productid : productID, productname: productName } = req.headers;
+  // // if (!productID && !productName) {
+  // //   res.status(400);
+  // //   res.send();
+  // // }
+  // // let reviewPromise = (productID) ? selectReviewsByID(productID) : selectReviewsByName(productName);
+  // // console.log('numberId:', numberId);
+  // reviewPromise.then((data) => {
+  //   res.status(200).send(data);
+  // })
+  // .catch((err) => {
+  //   // console.error('Error in GET /api/reviews', err);
+  //   res.end();
+  // });
+});
 
 app.post('/api/reviews', (req, res) => {
   if (!req.body.user) {
@@ -63,7 +63,6 @@ app.post('/api/reviews', (req, res) => {
   
   reviewObj['user_id'] = user_id;
   reviewObj['created_at'] = created_at;
-  console.log('reviewObj:', reviewObj);
 
   createReview(reviewObj)
     .then((data) => {

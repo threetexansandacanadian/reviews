@@ -61,6 +61,7 @@ class App extends Component {
   handleReviewSubmit(review) {
     const { currentProdID } = this.state;
     const newReview = { ...review };
+    console.log('newReview:', newReview);
     newReview.review.product_id = currentProdID;
 
     postReview(newReview)

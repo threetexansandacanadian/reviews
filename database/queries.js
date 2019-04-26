@@ -15,9 +15,9 @@ const selectReviewsById = ((id) => {
   ORDER BY reviews.id ASC;`;
 });
 
-const insertReview = rev => `INSERT INTO reviews_but_better 
-                            (review, stars, title, product_id, user_id)
-                            VALUES ('${rev.review}', ${rev.stars}, '${rev.title}', ${rev.product_id}, ${rev.user_id});`;
+const insertReview = rev => `INSERT INTO reviews
+                            (review, stars, title, product_id, user_id, created_at)
+                            VALUES ('${rev.review}', ${rev.stars}, '${rev.title}', '${rev.product_id}', '${rev.user_id}', '${rev.created_at}');`;
 
 // const selectReviewsByProdName = name => `SELECT * FROM products
 //                                   INNER JOIN reviews_but_better ON products.id=reviews_but_better.product_id
